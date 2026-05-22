@@ -7,177 +7,126 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --bg: #fafaf8;
-    --surface: #ffffff;
-    --surface2: #f4f3ef;
-    --border: rgba(0,0,0,0.1);
-    --border2: rgba(0,0,0,0.18);
-    --text: #1a1a18;
-    --text2: #6b6b67;
-    --text3: #9b9b96;
-    --accent: #1a5fb4;
-    --accent-bg: #e8f0fd;
-    --radius: 10px;
-    --radius-lg: 14px;
+    --bg:#fafaf8;--surface:#fff;--surface2:#f4f3ef;--border:rgba(0,0,0,0.1);
+    --border2:rgba(0,0,0,0.18);--text:#1a1a18;--text2:#6b6b67;--text3:#9b9b96;
+    --accent:#1a5fb4;--accent-bg:#e8f0fd;--radius:10px;--radius-lg:14px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #18181a;
-      --surface: #232325;
-      --surface2: #2c2c2e;
-      --border: rgba(255,255,255,0.1);
-      --border2: rgba(255,255,255,0.18);
-      --text: #f0f0ee;
-      --text2: #a0a09c;
-      --text3: #686864;
-      --accent: #6aabff;
-      --accent-bg: #1a2a40;
-    }
+  @media(prefers-color-scheme:dark){
+    :root{--bg:#18181a;--surface:#232325;--surface2:#2c2c2e;--border:rgba(255,255,255,0.1);
+    --border2:rgba(255,255,255,0.18);--text:#f0f0ee;--text2:#a0a09c;--text3:#686864;
+    --accent:#6aabff;--accent-bg:#1a2a40;}
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
-  /* ── Setup screens ── */
-  .setup-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
-  .setup-card { background: var(--surface); border: 0.5px solid var(--border2); border-radius: var(--radius-lg); padding: 2.5rem 2rem; max-width: 440px; width: 100%; }
-  .setup-logo { font-size: 28px; margin-bottom: 6px; }
-  .setup-title { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-  .setup-sub { font-size: 13px; color: var(--text2); margin-bottom: 2rem; line-height: 1.5; }
-  .setup-step { display: flex; gap: 12px; margin-bottom: 1.5rem; align-items: flex-start; }
-  .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent-bg); color: var(--accent); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .step-body label { font-size: 13px; font-weight: 500; display: block; margin-bottom: 6px; }
-  .step-body input { width: 100%; padding: 9px 12px; border: 0.5px solid var(--border2); border-radius: var(--radius); background: var(--surface2); color: var(--text); font-size: 13px; outline: none; }
-  .step-body input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,95,180,0.12); }
-  .step-body small { font-size: 11px; color: var(--text3); display: block; margin-top: 4px; }
-  .btn-google { width: 100%; padding: 10px; border-radius: var(--radius); border: 0.5px solid var(--border2); background: var(--surface); color: var(--text); font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.15s; }
-  .btn-google:hover { background: var(--surface2); }
-  .btn-google svg { width: 18px; height: 18px; }
-  .btn-primary { width: 100%; padding: 11px; border-radius: var(--radius); border: none; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 1.5rem; transition: opacity 0.15s; }
-  .btn-primary:hover { opacity: 0.88; }
-  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
-  .setup-divider { border: none; border-top: 0.5px solid var(--border); margin: 1.5rem 0; }
-  .setup-note { font-size: 11px; color: var(--text3); line-height: 1.6; margin-top: 1.5rem; text-align: center; }
-  .setup-note a { color: var(--accent); }
+  .setup-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+  .setup-card{background:var(--surface);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:2.5rem 2rem;max-width:460px;width:100%;}
+  .setup-logo{font-size:32px;margin-bottom:8px;}
+  .setup-title{font-size:20px;font-weight:600;margin-bottom:6px;}
+  .setup-sub{font-size:13px;color:var(--text2);margin-bottom:2rem;line-height:1.6;}
+  .free-badge{display:inline-block;background:#e8f8ec;color:#1a7a3a;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:1.5rem;}
+  .step{display:flex;gap:12px;margin-bottom:1.5rem;align-items:flex-start;}
+  .step-num{width:24px;height:24px;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .step-body{flex:1;}
+  .step-body label{font-size:13px;font-weight:500;display:block;margin-bottom:6px;}
+  .step-body small{font-size:11px;color:var(--text3);display:block;margin-top:5px;line-height:1.5;}
+  .btn-google{width:100%;padding:10px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--surface);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.15s;}
+  .btn-google:hover{background:var(--surface2);}
+  .btn-primary{width:100%;padding:12px;border-radius:var(--radius);border:none;background:var(--accent);color:#fff;font-size:14px;font-weight:600;cursor:pointer;margin-top:1rem;transition:opacity 0.15s;}
+  .btn-primary:hover{opacity:0.88;}
+  .btn-primary:disabled{opacity:0.35;cursor:not-allowed;}
+  .auth-ok{margin-top:8px;font-size:12px;color:#1a7a3a;display:none;}
+  .setup-note{font-size:11px;color:var(--text3);line-height:1.6;margin-top:1.5rem;text-align:center;}
+  .setup-note a{color:var(--accent);}
 
-  /* ── Dashboard ── */
-  #dashboard { display: none; }
-  .topbar { background: var(--surface); border-bottom: 0.5px solid var(--border); padding: 0 1.5rem; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-  .topbar-brand { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-  .topbar-brand span { font-size: 18px; }
-  .topbar-right { display: flex; align-items: center; gap: 10px; }
-  .topbar-range { padding: 6px 10px; border-radius: var(--radius); border: 0.5px solid var(--border2); background: var(--surface2); color: var(--text); font-size: 12px; cursor: pointer; }
-  .topbar-load { padding: 6px 14px; border-radius: var(--radius); border: 0.5px solid var(--border2); background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
-  .topbar-load:hover { opacity: 0.85; }
-  .topbar-load:disabled { opacity: 0.5; cursor: not-allowed; }
-  .user-chip { font-size: 12px; color: var(--text2); }
+  #dashboard{display:none;}
+  .topbar{background:var(--surface);border-bottom:0.5px solid var(--border);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .topbar-brand{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px;}
+  .topbar-right{display:flex;align-items:center;gap:8px;}
+  .topbar-range{padding:6px 10px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text);font-size:12px;}
+  .topbar-load{padding:6px 14px;border-radius:var(--radius);border:none;background:var(--accent);color:#fff;font-size:12px;font-weight:500;cursor:pointer;transition:opacity 0.15s;}
+  .topbar-load:hover{opacity:0.85;}
+  .topbar-load:disabled{opacity:0.5;cursor:not-allowed;}
 
-  .main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+  .main{max-width:960px;margin:0 auto;padding:1.5rem;}
+  .state-box{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:3rem 2rem;text-align:center;}
+  .spinner{width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 14px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .state-box p{font-size:14px;color:var(--text2);}
+  .error-box{background:#fff0f0;border:0.5px solid #f0a0a0;border-radius:var(--radius-lg);padding:1.2rem 1.5rem;font-size:13px;color:#a03030;margin-bottom:1.2rem;}
 
-  /* loading / error */
-  .state-box { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; }
-  .spinner { width: 32px; height: 32px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 14px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .state-box p { font-size: 14px; color: var(--text2); }
-  .error-box { background: #fff0f0; border: 0.5px solid #f0a0a0; border-radius: var(--radius-lg); padding: 1.2rem 1.5rem; font-size: 13px; color: #a03030; margin-bottom: 1.2rem; }
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.2rem;}
+  .metric{background:var(--surface2);border-radius:var(--radius);padding:14px 16px;}
+  .metric-label{font-size:11px;color:var(--text2);margin-bottom:5px;}
+  .metric-val{font-size:24px;font-weight:600;}
+  .metric-unit{font-size:13px;font-weight:400;}
+  .metric-sub{font-size:11px;color:var(--text3);margin-top:3px;}
 
-  /* metrics row */
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.2rem; }
-  .metric { background: var(--surface2); border-radius: var(--radius); padding: 14px 16px; }
-  .metric-label { font-size: 11px; color: var(--text2); margin-bottom: 5px; }
-  .metric-val { font-size: 24px; font-weight: 600; color: var(--text); }
-  .metric-unit { font-size: 13px; font-weight: 400; }
-  .metric-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .cards-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.2rem;}
+  .card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.25rem;}
+  .card-title{font-size:13px;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:6px;}
 
-  /* cards grid */
-  .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.2rem; }
-  .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.25rem; }
-  .card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
-  .card-title-icon { font-size: 15px; }
+  .cat-row{display:flex;align-items:center;gap:9px;margin-bottom:9px;}
+  .cat-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .cat-name{font-size:12px;flex:1;}
+  .cat-bar-wrap{flex:2;background:var(--surface2);border-radius:3px;height:5px;}
+  .cat-bar{height:5px;border-radius:3px;}
+  .cat-hrs{font-size:11px;color:var(--text2);min-width:36px;text-align:right;}
 
-  /* category rows */
-  .cat-row { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
-  .cat-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .cat-name { font-size: 12px; color: var(--text); flex: 1; }
-  .cat-bar-wrap { flex: 2; background: var(--surface2); border-radius: 3px; height: 5px; }
-  .cat-bar { height: 5px; border-radius: 3px; }
-  .cat-hrs { font-size: 11px; color: var(--text2); min-width: 36px; text-align: right; }
+  .ev-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:0.5px solid var(--border);}
+  .ev-row:last-child{border-bottom:none;}
+  .ev-badge{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500;white-space:nowrap;flex-shrink:0;}
+  .ev-title{font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
+  .ev-dur{font-size:11px;color:var(--text2);flex-shrink:0;}
 
-  /* event list */
-  .ev-row { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
-  .ev-row:last-child { border-bottom: none; }
-  .ev-badge { font-size: 10px; padding: 2px 7px; border-radius: 20px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
-  .ev-title { font-size: 12px; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
-  .ev-dur { font-size: 11px; color: var(--text2); flex-shrink: 0; }
+  .insight{background:var(--surface2);border-radius:var(--radius);padding:11px 13px;margin-bottom:8px;display:flex;gap:9px;font-size:12px;line-height:1.55;}
+  .insight-icon{font-size:16px;flex-shrink:0;}
 
-  /* insight */
-  .insight { background: var(--surface2); border-radius: var(--radius); padding: 11px 13px; margin-bottom: 8px; display: flex; gap: 9px; font-size: 12px; color: var(--text); line-height: 1.55; }
-  .insight-icon { font-size: 16px; flex-shrink: 0; }
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+  .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);}
+  .legend-sq{width:10px;height:10px;border-radius:2px;}
 
-  /* chart legend */
-  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
-  .legend-sq { width: 10px; height: 10px; border-radius: 2px; }
+  /* keyword editor */
+  .keyword-section{margin-top:1.2rem;}
+  .keyword-toggle{background:none;border:0.5px solid var(--border2);border-radius:var(--radius);padding:6px 12px;font-size:12px;color:var(--text2);cursor:pointer;width:100%;}
+  .keyword-panel{display:none;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-top:8px;}
+  .kw-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .kw-label{font-size:12px;font-weight:500;min-width:90px;display:flex;align-items:center;gap:5px;}
+  .kw-dot{width:8px;height:8px;border-radius:50%;}
+  .kw-input{flex:1;padding:6px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:12px;outline:none;}
+  .kw-input:focus{border-color:var(--accent);}
+  .kw-note{font-size:11px;color:var(--text3);margin-top:4px;}
 
-  .footer-row { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
-  .action-btn { padding: 8px 14px; border-radius: var(--radius); border: 0.5px solid var(--border2); background: var(--surface); color: var(--text); font-size: 12px; cursor: pointer; }
-  .action-btn:hover { background: var(--surface2); }
-
-  @media (max-width: 640px) {
-    .metrics { grid-template-columns: repeat(2, 1fr); }
-    .cards-2 { grid-template-columns: 1fr; }
-  }
+  @media(max-width:640px){.metrics{grid-template-columns:repeat(2,1fr);}.cards-2{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ SETUP SCREEN ═══════════════ -->
+<!-- ═══ SETUP ═══ -->
 <div class="setup-wrap" id="setup">
   <div class="setup-card">
     <div class="setup-logo">⏱️</div>
     <div class="setup-title">営業タイムマネジメント</div>
-    <div class="setup-sub">Googleカレンダーの予定をAIが自動分類して、何にどれだけ時間を使っているか可視化します。</div>
+    <div class="setup-sub">Googleカレンダーの予定を自動分類して、何にどれだけ時間を使っているか可視化します。</div>
+    <div class="free-badge">✓ 完全無料・APIキー不要</div>
 
-    <div class="setup-step">
-      <div class="step-num">1</div>
-      <div class="step-body" style="flex:1">
-        <button class="btn-google" id="btn-google-auth">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-          Googleアカウントでサインイン
-        </button>
-        <small style="margin-top:6px;display:block;color:var(--text3);">カレンダーの読み取り権限のみ取得します</small>
-        <div id="auth-status" style="margin-top:8px;font-size:12px;color:#2a7a3b;display:none;">✓ Googleアカウント認証済み</div>
-      </div>
-    </div>
-
-    <div class="setup-step">
-      <div class="step-num">2</div>
-      <div class="step-body" style="flex:1">
-        <label>Anthropic APIキー</label>
-        <input type="password" id="api-key-input" placeholder="sk-ant-..." autocomplete="off">
-        <small>分析にClaudeを使用します。<a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a> で取得できます。</small>
-      </div>
-    </div>
+    <button class="btn-google" id="btn-google" style="margin-bottom:1rem;">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Googleアカウントでサインイン
+    </button>
+    <div class="auth-ok" id="auth-ok" style="margin-bottom:1rem;">✓ 認証済み</div>
 
     <button class="btn-primary" id="start-btn" disabled onclick="startDashboard()">ダッシュボードを開く</button>
 
-    <div class="setup-note">
-      APIキーはブラウザのメモリにのみ保持され、サーバーには送信されません。<br>
-      Googleカレンダーは読み取りのみで変更は行いません。
-    </div>
+    <div class="setup-note">カレンダーの読み取りのみ・変更は行いません。<br>完全無料・APIキー不要で動作します。</div>
   </div>
 </div>
 
-<!-- ═══════════════ DASHBOARD ═══════════════ -->
+<!-- ═══ DASHBOARD ═══ -->
 <div id="dashboard">
   <div class="topbar">
-    <div class="topbar-brand"><span>⏱️</span>営業タイムマネジメント</div>
+    <div class="topbar-brand">⏱️ 営業タイムマネジメント</div>
     <div class="topbar-right">
-      <span class="user-chip" id="user-email"></span>
       <select class="topbar-range" id="range-sel">
         <option value="7">直近7日</option>
         <option value="14">直近14日</option>
@@ -189,136 +138,124 @@
   <div class="main" id="main-content">
     <div class="state-box"><p>「読み込む」を押してデータを取得します</p></div>
   </div>
+  <div class="main" style="padding-top:0;">
+    <div class="keyword-section">
+      <button class="keyword-toggle" onclick="toggleKeywords()">⚙️ 分類キーワードをカスタマイズ</button>
+      <div class="keyword-panel" id="kw-panel">
+        <div class="kw-note" style="margin-bottom:12px;">イベントタイトルに含まれるキーワードで分類します。カンマ区切りで複数入力できます。</div>
+        <div id="kw-rows"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-// ── Google OAuth (implicit flow) ──
-const GOOGLE_CLIENT_ID = ''; // 後で設定
-const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+const CAT_COLORS={'商談':'#378ADD','社内MTG':'#1D9E75','資料作成':'#EF9F27','移動':'#888780','電話/コール':'#D4537E','その他':'#AFA9EC'};
+const CAT_BG={'商談':'#E6F1FB','社内MTG':'#E1F5EE','資料作成':'#FAEEDA','移動':'#F1EFE8','電話/コール':'#FBEAF0','その他':'#EEEDFE'};
+const CAT_TEXT={'商談':'#0C447C','社内MTG':'#085041','資料作成':'#633806','移動':'#444441','電話/コール':'#72243E','その他':'#3C3489'};
 
-const CAT_COLORS = {
-  '商談': '#378ADD', '社内MTG': '#1D9E75', '資料作成': '#EF9F27',
-  '移動': '#888780', '電話/コール': '#D4537E', 'その他': '#AFA9EC'
+// デフォルトキーワード
+const DEFAULT_KEYWORDS = {
+  '商談': '商談,提案,訪問,デモ,打ち合わせ,ミーティング,client,meeting,demo,proposal,visit',
+  '社内MTG': '社内,定例,朝会,夕会,チーム,全社,部会,1on1,面談,レビュー,weekly,standup',
+  '資料作成': '資料,作成,準備,企画,報告書,プレゼン,スライド,まとめ,draft',
+  '移動': '移動,出張,新幹線,電車,飛行機,travel',
+  '電話/コール': '電話,TEL,コール,call,架電,フォロー'
 };
-const CAT_BG   = { '商談':'#E6F1FB','社内MTG':'#E1F5EE','資料作成':'#FAEEDA','移動':'#F1EFE8','電話/コール':'#FBEAF0','その他':'#EEEDFE' };
-const CAT_TEXT = { '商談':'#0C447C','社内MTG':'#085041','資料作成':'#633806','移動':'#444441','電話/コール':'#72243E','その他':'#3C3489' };
 
-let gToken = null, anthropicKey = null, donutChart = null;
+let gToken = null, clientId = '', donutChart = null;
+let keywords = JSON.parse(localStorage.getItem('tm_keywords') || 'null') || {...DEFAULT_KEYWORDS};
 
-// Handle OAuth redirect
+// OAuth redirect handling
 window.addEventListener('load', () => {
   const hash = window.location.hash;
   if (hash.includes('access_token')) {
-    const params = new URLSearchParams(hash.substring(1));
-    gToken = params.get('access_token');
-    window.history.replaceState(null, '', window.location.pathname);
-    document.getElementById('auth-status').style.display = 'block';
-    document.getElementById('btn-google-auth').textContent = '✓ 認証済み';
-    document.getElementById('btn-google-auth').style.opacity = '0.6';
+    const p = new URLSearchParams(hash.substring(1));
+    gToken = p.get('access_token');
+    window.history.replaceState(null,'',window.location.pathname);
+    document.getElementById('auth-ok').style.display = 'block';
+    document.getElementById('btn-google').innerHTML = '✓ 認証済み';
+    document.getElementById('btn-google').style.opacity = '0.6';
     checkReady();
   }
+  renderKeywordEditor();
 });
 
-document.getElementById('btn-google-auth').onclick = () => {
-  const clientId = document.getElementById('gclient-id-input') ?
-    document.getElementById('gclient-id-input').value.trim() : GOOGLE_CLIENT_ID;
-  if (!clientId) { alert('Google Client IDを設定してください（index.htmlのGOOGLE_CLIENT_IDを編集）'); return; }
+document.getElementById('btn-google').onclick = () => {
+  clientId = '331247106665-e0r1r3jop02gclcp0ro4j2m07lpuds8a.apps.googleusercontent.com';
   const redirect = window.location.origin + window.location.pathname;
-  const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(clientId)}&redirect_uri=${encodeURIComponent(redirect)}&response_type=token&scope=${encodeURIComponent(SCOPES)}&prompt=consent`;
+  const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(clientId)}&redirect_uri=${encodeURIComponent(redirect)}&response_type=token&scope=${encodeURIComponent('https://www.googleapis.com/auth/calendar.readonly')}&prompt=consent`;
   window.location.href = url;
 };
 
-document.getElementById('api-key-input').addEventListener('input', checkReady);
 function checkReady() {
-  const key = document.getElementById('api-key-input').value.trim();
-  document.getElementById('start-btn').disabled = !(gToken && key.startsWith('sk-'));
+  document.getElementById('start-btn').disabled = !gToken;
 }
 
 function startDashboard() {
-  anthropicKey = document.getElementById('api-key-input').value.trim();
+  clientId = '331247106665-e0r1r3jop02gclcp0ro4j2m07lpuds8a.apps.googleusercontent.com';
   document.getElementById('setup').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
+  renderKeywordEditor();
   loadData();
 }
 
-// ── Load calendar events ──
+// ── Keyword-based categorization (no AI needed) ──
+function categorize(title) {
+  const t = (title || '').toLowerCase();
+  for (const [cat, kwStr] of Object.entries(keywords)) {
+    if (cat === 'その他') continue;
+    const kws = kwStr.split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+    if (kws.some(k => k && t.includes(k))) return cat;
+  }
+  return 'その他';
+}
+
+// ── Load calendar data ──
 async function loadData() {
   const days = parseInt(document.getElementById('range-sel').value);
   const btn = document.getElementById('load-btn');
   btn.disabled = true; btn.textContent = '取得中...';
-  setContent(loadingHtml('Googleカレンダーからイベントを取得中...'));
+  setContent(loadingHtml('Googleカレンダーからデータを取得中...'));
 
   try {
     const now = new Date();
-    const timeMin = new Date(now - days * 86400000).toISOString();
+    const timeMin = new Date(now - days*86400000).toISOString();
     const timeMax = now.toISOString();
 
-    const calResp = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${encodeURIComponent(timeMin)}&timeMax=${encodeURIComponent(timeMax)}&singleEvents=true&orderBy=startTime&maxResults=200`,
+    const resp = await fetch(
+      `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${encodeURIComponent(timeMin)}&timeMax=${encodeURIComponent(timeMax)}&singleEvents=true&orderBy=startTime&maxResults=500`,
       { headers: { Authorization: `Bearer ${gToken}` } }
     );
-    if (!calResp.ok) throw new Error('Googleカレンダーの取得に失敗しました (token期限切れの可能性)');
-    const calData = await calResp.json();
-
-    const events = (calData.items || [])
-      .filter(e => e.start && (e.start.dateTime || e.start.date))
+    if (!resp.ok) {
+      if (resp.status === 401) throw new Error('Googleのトークンが期限切れです。ページをリロードして再度サインインしてください。');
+      throw new Error('カレンダーの取得に失敗しました (HTTP ' + resp.status + ')');
+    }
+    const data = await resp.json();
+    const events = (data.items || [])
+      .filter(e => e.start && (e.start.dateTime || e.start.date) && e.summary)
       .map(e => {
         const s = new Date(e.start.dateTime || e.start.date);
         const en = new Date(e.end.dateTime || e.end.date);
         const dur = Math.round((en - s) / 60000);
-        return { title: e.summary || '(無題)', durationMin: dur };
+        return { title: e.summary || '(無題)', durationMin: dur, date: s.toLocaleDateString('ja-JP') };
       })
       .filter(e => e.durationMin > 0 && e.durationMin < 720);
 
     if (!events.length) {
-      setContent(`<div class="error-box">この期間にイベントが見つかりませんでした。</div>`);
+      setContent('<div class="error-box">この期間にイベントが見つかりませんでした。</div>'); 
       btn.disabled = false; btn.textContent = '再読み込み'; return;
     }
 
-    setContent(loadingHtml(`AIが${events.length}件のイベントを分類・分析中...`));
+    // Classify
+    const classified = events.map(e => ({ ...e, category: categorize(e.title) }));
+    const summary = {};
+    for (const cat of Object.keys(CAT_COLORS)) summary[cat] = 0;
+    classified.forEach(e => { summary[e.category] = (summary[e.category]||0) + e.durationMin; });
 
-    const aiResp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': anthropicKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        messages: [{
-          role: 'user',
-          content: `あなたは営業担当者のカレンダーアナリストです。以下のイベント一覧を分析し、JSONのみを返してください（前後の説明不要）。
-
-カテゴリ: 商談, 社内MTG, 資料作成, 移動, 電話/コール, その他
-
-イベント一覧:
-${JSON.stringify(events)}
-
-返却形式（JSONのみ、\`\`\`不要）:
-{
-  "classified": [{"title":"...","category":"...","durationMin":数値}],
-  "summary": {"商談":合計分,"社内MTG":合計分,"資料作成":合計分,"移動":合計分,"電話/コール":合計分,"その他":合計分},
-  "insights": ["具体的な数値を含むインサイト1","インサイト2","インサイト3"],
-  "totalEvents": 件数,
-  "totalHours": 小数の合計時間
-}`
-        }]
-      })
-    });
-    if (!aiResp.ok) {
-      const err = await aiResp.json();
-      throw new Error('Anthropic APIエラー: ' + (err.error?.message || aiResp.status));
-    }
-    const aiData = await aiResp.json();
-    const raw = aiData.content[0].text.replace(/```json|```/g,'').trim();
-    const result = JSON.parse(raw);
-    renderDashboard(result, days);
-
+    renderDashboard(classified, summary, days);
   } catch(e) {
-    setContent(`<div class="error-box">⚠️ ${e.message}</div><div class="state-box"><p>エラーが発生しました。ページを再読み込みして再度お試しください。</p></div>`);
+    setContent(`<div class="error-box">⚠️ ${e.message}</div>`);
   }
   btn.disabled = false; btn.textContent = '再読み込み';
 }
@@ -326,37 +263,42 @@ ${JSON.stringify(events)}
 function loadingHtml(msg) {
   return `<div class="state-box"><div class="spinner"></div><p>${msg}</p></div>`;
 }
-function setContent(html) {
-  document.getElementById('main-content').innerHTML = html;
-}
+function setContent(html) { document.getElementById('main-content').innerHTML = html; }
 
-// ── Render Dashboard ──
-function renderDashboard(data, days) {
-  const summary = data.summary || {};
-  const totalMin = Object.values(summary).reduce((a,b) => a+b, 0);
+// ── Render ──
+function renderDashboard(classified, summary, days) {
+  const totalMin = Object.values(summary).reduce((a,b)=>a+b,0);
   const totalHrs = (totalMin/60).toFixed(1);
-  const clientMin = summary['商談'] || 0;
+  const clientMin = summary['商談']||0;
   const clientPct = Math.round((clientMin/(totalMin||1))*100);
-  const mtgMin = summary['社内MTG'] || 0;
+  const mtgMin = summary['社内MTG']||0;
   const mtgPct = Math.round((mtgMin/(totalMin||1))*100);
-  const topCat = Object.entries(summary).sort((a,b)=>b[1]-a[1])[0] || ['−',0];
-  const cats = Object.entries(summary).sort((a,b)=>b[1]-a[1]);
-  const maxMin = cats[0]?.[1] || 1;
-  const recent = (data.classified||[]).slice(-6).reverse();
+  const cats = Object.entries(summary).filter(([,m])=>m>0).sort((a,b)=>b[1]-a[1]);
+  const maxMin = cats[0]?.[1]||1;
+  const recent = [...classified].reverse().slice(0,6);
   const donutColors = cats.map(([c])=>CAT_COLORS[c]||'#888');
+
+  // Insights (rule-based)
+  const insights = [];
+  if (clientPct < 30) insights.push(`商談時間が全体の${clientPct}%（${(clientMin/60).toFixed(1)}h）です。商談比率を上げる余地がありそうです。`);
+  else insights.push(`商談時間は全体の${clientPct}%（${(clientMin/60).toFixed(1)}h）。良いペースです。`);
+  if (mtgPct > 40) insights.push(`社内MTGが${mtgPct}%（${(mtgMin/60).toFixed(1)}h）を占めています。削減できる会議がないか確認を。`);
+  else insights.push(`社内MTGは${mtgPct}%（${(mtgMin/60).toFixed(1)}h）。バランスが取れています。`);
+  const perDay = (totalMin/60/days).toFixed(1);
+  insights.push(`1日あたり平均${perDay}時間の予定が入っています（${days}日間の集計）。`);
 
   const metricsHtml = `<div class="metrics">
     <div class="metric"><div class="metric-label">📊 総稼働時間</div><div class="metric-val">${totalHrs}<span class="metric-unit"> h</span></div><div class="metric-sub">直近${days}日間</div></div>
-    <div class="metric"><div class="metric-label">📅 イベント数</div><div class="metric-val">${data.totalEvents||0}<span class="metric-unit"> 件</span></div><div class="metric-sub">AI分類済み</div></div>
-    <div class="metric"><div class="metric-label">🤝 商談比率</div><div class="metric-val">${clientPct}<span class="metric-unit"> %</span></div><div class="metric-sub">${(clientMin/60).toFixed(1)}h / ${totalHrs}h</div></div>
-    <div class="metric"><div class="metric-label">🏢 社内MTG比率</div><div class="metric-val">${mtgPct}<span class="metric-unit"> %</span></div><div class="metric-sub">${(mtgMin/60).toFixed(1)}h / ${totalHrs}h</div></div>
+    <div class="metric"><div class="metric-label">📅 イベント数</div><div class="metric-val">${classified.length}<span class="metric-unit"> 件</span></div><div class="metric-sub">分類済み</div></div>
+    <div class="metric"><div class="metric-label">🤝 商談比率</div><div class="metric-val">${clientPct}<span class="metric-unit"> %</span></div><div class="metric-sub">${(clientMin/60).toFixed(1)}h</div></div>
+    <div class="metric"><div class="metric-label">🏢 社内MTG比率</div><div class="metric-val">${mtgPct}<span class="metric-unit"> %</span></div><div class="metric-sub">${(mtgMin/60).toFixed(1)}h</div></div>
   </div>`;
 
-  const legendHtml = cats.map(([cat],i) =>
+  const legendHtml = cats.map(([cat],i)=>
     `<div class="legend-item"><div class="legend-sq" style="background:${donutColors[i]}"></div>${cat}</div>`
   ).join('');
 
-  const catsHtml = cats.map(([cat,min]) => {
+  const catsHtml = cats.map(([cat,min])=>{
     const pct = Math.round((min/maxMin)*100);
     return `<div class="cat-row">
       <div class="cat-dot" style="background:${CAT_COLORS[cat]||'#888'}"></div>
@@ -366,59 +308,79 @@ function renderDashboard(data, days) {
     </div>`;
   }).join('');
 
-  const evHtml = recent.map(ev => {
-    const cat = ev.category||'その他';
-    const d = ev.durationMin||0;
-    const dur = d>=60 ? Math.floor(d/60)+'h'+(d%60?d%60+'m':'') : d+'m';
+  const evHtml = recent.map(ev=>{
+    const cat=ev.category||'その他';
+    const d=ev.durationMin||0;
+    const dur=d>=60?Math.floor(d/60)+'h'+(d%60?d%60+'m':''):d+'m';
     return `<div class="ev-row">
       <span class="ev-badge" style="background:${CAT_BG[cat]};color:${CAT_TEXT[cat]}">${cat}</span>
-      <div class="ev-title">${(ev.title||'').substring(0,30)}</div>
+      <div class="ev-title">${(ev.title||'').substring(0,28)}</div>
       <div class="ev-dur">${dur}</div>
     </div>`;
   }).join('');
 
-  const insightHtml = (data.insights||[]).map((ins,i) =>
-    `<div class="insight"><div class="insight-icon">${['💡','📈','🎯'][i]||'💡'}</div><div>${ins}</div></div>`
+  const insightHtml = insights.map((ins,i)=>
+    `<div class="insight"><div class="insight-icon">${['💡','📈','🕐'][i]}</div><div>${ins}</div></div>`
   ).join('');
 
   setContent(`
     ${metricsHtml}
     <div class="cards-2">
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">🍩</span>カテゴリ別時間配分</div>
+        <div class="card-title">🍩 カテゴリ別時間配分</div>
         <div class="legend">${legendHtml}</div>
         <div style="position:relative;height:200px"><canvas id="donut-chart" role="img" aria-label="カテゴリ別時間配分">カテゴリ別時間配分</canvas></div>
       </div>
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">📋</span>カテゴリ別内訳</div>
+        <div class="card-title">📋 カテゴリ別内訳</div>
         ${catsHtml}
       </div>
     </div>
     <div class="cards-2">
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">🕐</span>直近のイベント</div>
+        <div class="card-title">🕐 直近のイベント</div>
         ${evHtml}
       </div>
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">✨</span>AIインサイト</div>
+        <div class="card-title">💡 インサイト</div>
         ${insightHtml}
       </div>
     </div>
   `);
 
   if (donutChart) donutChart.destroy();
-  donutChart = new Chart(document.getElementById('donut-chart'), {
-    type: 'doughnut',
-    data: {
-      labels: cats.map(([c])=>c),
-      datasets: [{ data: cats.map(([,m])=>parseFloat((m/60).toFixed(1))), backgroundColor: donutColors, borderWidth: 0 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false, cutout: '62%',
-      plugins: { legend:{display:false}, tooltip:{callbacks:{label:c=>c.label+': '+c.raw+'h'}} }
-    }
+  donutChart = new Chart(document.getElementById('donut-chart'),{
+    type:'doughnut',
+    data:{labels:cats.map(([c])=>c),datasets:[{data:cats.map(([,m])=>parseFloat((m/60).toFixed(1))),backgroundColor:donutColors,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+c.raw+'h'}}}}
   });
 }
+
+// ── Keyword editor ──
+function renderKeywordEditor() {
+  const rows = document.getElementById('kw-rows');
+  if (!rows) return;
+  rows.innerHTML = Object.entries(keywords).filter(([c])=>c!=='その他').map(([cat,kws])=>`
+    <div class="kw-row">
+      <div class="kw-label"><div class="kw-dot" style="background:${CAT_COLORS[cat]}"></div>${cat}</div>
+      <input class="kw-input" data-cat="${cat}" value="${kws}" placeholder="キーワード（カンマ区切り）">
+    </div>`).join('') + '<div class="kw-note">変更は自動保存され、次回読み込み時に反映されます。</div>';
+
+  rows.querySelectorAll('.kw-input').forEach(input => {
+    input.addEventListener('change', () => {
+      keywords[input.dataset.cat] = input.value;
+      localStorage.setItem('tm_keywords', JSON.stringify(keywords));
+    });
+  });
+}
+
+function toggleKeywords() {
+  const p = document.getElementById('kw-panel');
+  p.style.display = p.style.display === 'block' ? 'none' : 'block';
+  if (p.style.display === 'block') renderKeywordEditor();
+}
+
+document.getElementById('range-sel')?.addEventListener('change', loadData);
 </script>
 </body>
 </html>
